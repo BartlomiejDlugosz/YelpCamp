@@ -51,10 +51,7 @@ router.get("/:id/edit", isLoggedIn, catchAsync(async (req, res, next) => {
     const campground = await Campground.findById(id)
     if (!campground) {
         req.flash("error", "Cannot find campground!")
-        res.redirect("/campgrounds")
-    }
-    else {
-        res.render("campgrounds/show", { campground })
+        return res.redirect("/campgrounds")
     }
     res.render("campgrounds/edit", { campground })
 }))
